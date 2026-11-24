@@ -1,0 +1,42 @@
+from ejercicio_02 import CancionNoEncontradaError
+
+def busqueda_lineal(canciones, campo, valor) -> list:
+
+    if campo not in ("titulo", "artista", "genero"):
+        raise ValueError(
+            "El campo debe ser 'titulo', 'artista' o 'genero'"
+        )
+
+    coincidencias = []
+
+    for cancion in canciones:
+        if getattr(cancion, campo) == valor:
+            coincidencias.append(cancion)
+
+    return coincidencias
+
+
+def busqueda_binaria_por_titulo(canciones_ordenadas, titulo):
+
+    izquierda = 0
+    derecha = len(canciones_ordenadas) - 1
+
+    while izquierda <= derecha:
+        medio = (izquierda + derecha) // 2
+        actual = canciones_ordenadas[medio]
+
+        if actual.titulo == titulo:
+            return actual
+
+        if actual.titulo < titulo:
+            izquierda = medio + 1
+        else:
+            derecha = medio - 1
+
+    raise CancionNoEncontradaError(
+        f"No existe una canción con título '{titulo}'"
+    )
+#Respuesta a la pregunta teórica:
+#La búsqueda binaria necesita que la lista esté ordenadapor título porque compara con el elemento central y descarta una mitad de la colección en cada paso.
+#Si los elementos no estuvieran ordenados, podría descartaruna mitad que contiene la canción buscada.
+#La búsqueda binaria tiene complejidad O(log n). La búsqueda lineal por artista tiene complejidad O(n),porque puede necesitar recorrer todas las canciones.
