@@ -1,4 +1,6 @@
 from ejercicio_02 import CancionNoEncontradaError
+class ListaVaciaError(Exception):
+    pass
 class Nodo:
     def __init__(self, dato, siguiente=None):
         self.dato = dato
@@ -35,7 +37,7 @@ class ListaEnlazada:
 
     def quitar_primero(self):
         if self.esta_vacia():
-            return None
+            raise ListaVaciaError("La lista está vacía")
 
         dato = self._primero.dato
         self._primero = self._primero.siguiente
@@ -43,12 +45,11 @@ class ListaEnlazada:
 
         return dato
 
-    def __iter__(self):
-        actual = self._primero
+    def ver_primero(self):
+        if self.esta_vacia():
+            raise ListaVaciaError("La lista está vacía")
 
-        while actual is not None:
-            yield actual.dato
-            actual = actual.siguiente
+        return self._primero.dato
 
     def quitar_por_id(self, id):
         anterior = None
@@ -69,6 +70,14 @@ class ListaEnlazada:
             actual = actual.siguiente
 
         return None
+
+    def __iter__(self):
+        actual = self._primero
+
+        while actual is not None:
+            yield actual.dato
+            actual = actual.siguiente
+
 class Playlist:
     def __init__(self):
         self._canciones = ListaEnlazada()
@@ -81,13 +90,18 @@ class Playlist:
 
         if cancion is None:
             raise CancionNoEncontradaError(
-                f"La canción con ID {id} no está en la playlist"
+                f"La canción {id} no está en la playlist"
             )
 
         return cancion
 
     def listar(self):
-        return [str(cancion) for cancion in self._canciones]
+        resultado = []
+
+        for cancion in self._canciones:
+            resultado.append(str(cancion))
+
+        return resultado
 
     def duracion_total(self):
         total = 0
@@ -97,5 +111,5 @@ class Playlist:
 
         return total
 #Respuesta a la pregunta teórica:
-#Cuando la lista ya tiene n nodos, para insertar al final debemos recorrer desde el primero hasta el último.Se atraviesan n-1 enlaces si n es mayor o igual a 1.
-#Por eso, la complejidad temporal es O(n), ya queel trabajo aumenta proporcionalmente con la cantidad e nodos almacenados.
+#Para insertar al final de una lista con n elementos, se recorren n nodos hasta llegar al último. Esto equivale a seguir n-1 enlaces.
+#Por eso la complejidad es O(n).

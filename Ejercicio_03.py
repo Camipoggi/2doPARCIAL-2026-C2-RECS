@@ -1,9 +1,4 @@
-from Ejercicio_02 import CancionNoEncontradaError
-
-
-def versiones_de(biblioteca, versiones, cancion_id) -> list:
-    """Devuelve (titulo, tipo) de versiones y descendientes."""
-
+ def versiones_de(biblioteca, versiones, cancion_id) -> list:
     biblioteca.obtener(cancion_id)
 
     directas = []
@@ -12,18 +7,14 @@ def versiones_de(biblioteca, versiones, cancion_id) -> list:
         if original_id == cancion_id:
             directas.append((version_id, tipo))
 
-    directas.sort(key=lambda elemento: elemento[0])
-
-    if not directas:
-        return []
+    directas.sort(key=lambda version: version[0])
 
     resultado = []
 
     for version_id, tipo in directas:
-        version = biblioteca.obtener(version_id)
+        cancion = biblioteca.obtener(version_id)
 
-        resultado.append((version.titulo, tipo))
-
+        resultado.append((cancion.titulo, tipo))
         resultado.extend(
             versiones_de(biblioteca, versiones, version_id)
         )
@@ -31,7 +22,7 @@ def versiones_de(biblioteca, versiones, cancion_id) -> list:
     return resultado
 
 #Respuesta a la pregunta teórica:
-#El caso base ocurre cuando una canción no tiene versionesdirectas. En ese caso, la función devuelve una lista vacía [].
+#El caso base ocurre cuando una canción no tiene versiones directas. En ese caso, la función devuelve una lista vacía [].
 #Secuencia de llamadas:
 #versiones_de(..., 12):
 #Encuentra la versión 13, de tipo "live".

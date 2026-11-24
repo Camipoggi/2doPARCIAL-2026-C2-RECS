@@ -1,38 +1,34 @@
-from ejercicio_02 import CancionNoEncontradaError
-def busqueda_lineal(canciones, campo, valor) -> list:
+def ordenar_por_anio_seleccion(canciones) -> list:
+    # Ordena por año de mayor a menor.
 
-    if campo not in ("titulo", "artista", "genero"):
-        raise ValueError(
-            "El campo debe ser 'titulo', 'artista' o 'genero'"
+    for i in range(len(canciones) - 1):
+        mayor = i
+
+        for j in range(i + 1, len(canciones)):
+            if canciones[j].anio > canciones[mayor].anio:
+                mayor = j
+
+        canciones[i], canciones[mayor] = (
+            canciones[mayor], canciones[i]
         )
 
-    coincidencias = []
+    return canciones
 
-    for cancion in canciones:
-        if getattr(cancion, campo) == valor:
-            coincidencias.append(cancion)
 
-    return coincidencias
-def busqueda_binaria_por_titulo(canciones_ordenadas, titulo):
+def ordenar_por_duracion_insercion(canciones) -> list:
+    # Ordena por duración de menor a mayor.
 
-    izquierda = 0
-    derecha = len(canciones_ordenadas) - 1
+    for i in range(1, len(canciones)):
+        actual = canciones[i]
+        j = i - 1
 
-    while izquierda <= derecha:
-        medio = (izquierda + derecha) // 2
-        actual = canciones_ordenadas[medio]
+        while j >= 0 and canciones[j].duracion_seg > actual.duracion_seg:
+            canciones[j + 1] = canciones[j]
+            j -= 1
 
-        if actual.titulo == titulo:
-            return actual
+        canciones[j + 1] = actual
 
-        if actual.titulo < titulo:
-            izquierda = medio + 1
-        else:
-            derecha = medio - 1
-
-    raise CancionNoEncontradaError(
-        f"No existe una canción con título '{titulo}'"
-    )
+    return canciones
 
 # Respuesta a la pregunta teórica:
 #El ordenamiento por selección tiene complejidad temporal O(n²) en el peor caso, porque utiliza recorridos anidados para encontrar el elemento que corresponde a cada posición.

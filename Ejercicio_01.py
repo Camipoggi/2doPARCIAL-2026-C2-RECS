@@ -25,5 +25,6 @@ class Cancion:
             return NotImplemented
         return self.id == otra.id
 
+#Respuesta de la pregunta teórica:
 #Conviene guardar la duración como un número entero de segundos porque así podemos realizar operaciones matemáticas, comparar duraciones, directamente.
 #Después podemos convertirla al formato de minutos y segundos solamente cuando necesitemos mostrarla.

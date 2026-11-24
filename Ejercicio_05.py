@@ -42,4 +42,4 @@ class HistorialReproduccion:
         return self._historial.ver_tope()
 #Respuesta a la pregunta teórica:
 #El primer anterior() devuelve la canción "De Musica Ligera",porque fue la última canción registrada en el historial. Esto sucede porque una Pila sigue el principio LIFO:
-#ast In, First Out (último en entrar, primero en salir).
+#Last In, First Out (último en entrar, primero en salir).

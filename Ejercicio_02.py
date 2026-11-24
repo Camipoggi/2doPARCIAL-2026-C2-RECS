@@ -29,5 +29,6 @@ class Biblioteca:
         return iter(self._canciones)
 
 #Respuesta de la pregunta teórica:
-#La Biblioteca administra el catálogo general, es decir, todas las canciones disponibles. En cambio, la Playlist representa una selección de canciones que realiza el usuario.
+#La Biblioteca administra el catálogo general, es decir, todas las canciones disponibles. 
+#En cambio, la Playlist representa una selección de canciones que realiza el usuario.
 #Por eso las mantenemos en clases separadas, ya que tienen responsabilidades y reglas diferentes.

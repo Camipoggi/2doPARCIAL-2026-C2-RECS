@@ -4,8 +4,7 @@ import struct
 from ejercicio_01 import Cancion
 from ejercicio_02 import Biblioteca
 
-class ArchivoInvalidoError(Exception):
-    pass
+from ejercicio_09 import ArchivoInvalidoError
 
 ENCABEZADO = struct.Struct("=4s1sI")
 
@@ -189,12 +188,5 @@ def actualizar_registro(ruta, posicion, cancion):
 
 #Respuesta a la pregunta teórica:
 #La posición inicial de un registro se calcula mediante: offset = 9 + k * 144
-#
-# Donde:
-# 9 representa los bytes del encabezado.
-# k representa la posición del registro, comenzando desde 0.
-# 144 representa los bytes que ocupa cada registro.
-#
-# Como los registros tienen longitud fija, podemos calcular
-# directamente su ubicación y acceder mediante seek,
-# sin recorrer todos los registros anteriores.
+#Donde: 9 representa los bytes del encabezado. k representa la posición del registro, comenzando desde 0. 144 representa los bytes que ocupa cada registro.
+#Como los registros tienen longitud fija, podemos calcular directamente su ubicación y acceder mediante seek, sin recorrer todos los registros anteriores.

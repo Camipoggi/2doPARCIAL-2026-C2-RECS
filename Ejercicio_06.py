@@ -43,4 +43,4 @@ class ColaReproduccion:
 
 #Respuesta a la pregunta teórica:
 #El primer siguiente() devuelve la canción "Jijiji", porque fue la primera canción que ingresó a la cola. La Cola sigue el principio FIFO:
-#First In, First Out (primero en entrar, primero en salir). En cambio, la Pila sigue LIFO y retira primeroel último elemento agregado.
+#First In, First Out (primero en entrar, primero en salir). En cambio, la Pila sigue LIFO y retira primero el último elemento agregado.
