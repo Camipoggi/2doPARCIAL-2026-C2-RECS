@@ -1,4 +1,4 @@
-from ejercicio_02 import CancionNoEncontradaError
+from Ejercicio_02 import CancionNoEncontradaError
 class ListaVaciaError(Exception):
     pass
 class Nodo:

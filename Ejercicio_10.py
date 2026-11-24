@@ -1,10 +1,10 @@
 import os
 import struct
 
-from ejercicio_01 import Cancion
-from ejercicio_02 import Biblioteca
+from Ejercicio_01 import Cancion
+from Ejercicio_02 import Biblioteca
 
-from ejercicio_09 import ArchivoInvalidoError
+from Ejercicio_09 import ArchivoInvalidoError
 
 ENCABEZADO = struct.Struct("=4s1sI")
 

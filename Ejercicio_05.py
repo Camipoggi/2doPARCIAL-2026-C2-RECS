@@ -1,4 +1,4 @@
-from ejercicio_04 import ListaEnlazada
+from Ejercicio_04 import ListaEnlazada
 
 class PilaVaciaError(Exception):
     pass

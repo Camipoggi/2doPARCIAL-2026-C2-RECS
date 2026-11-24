@@ -1,7 +1,7 @@
 
 import csv
-from ejercicio_01 import Cancion
-from ejercicio_02 import Biblioteca
+from Ejercicio_01 import Cancion
+from Ejercicio_02 import Biblioteca
 
 
 class ArchivoInvalidoError(Exception):
